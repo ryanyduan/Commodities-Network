@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { List } from "semantic-ui-react";
+import { List, Label } from "semantic-ui-react";
 
 export default class UserDetails extends Component {
   constructor(props) {
@@ -22,15 +22,35 @@ export default class UserDetails extends Component {
       <List className="userDetails">
         {" "}
         <span id="title">User Details</span>
-        <List.Item>Business ID: {businessID}</List.Item>
-        <List.Item>Name: {name}</List.Item>
-        <List.Item>Email: {email} </List.Item>
-        <List.Item>Country: {country} </List.Item>
-        <List.Item>Province: {province} </List.Item>
-        <List.Item>City: {city}</List.Item>
-        <List.Item>Address: {address} </List.Item>
-        <List.Item>Postal Code: {postal_code} </List.Item>
-        <List.Item>Phone Number: {phone_number}</List.Item>
+        <List.Item>
+          {" "}
+          <Label style={{ width: "90px" }}>Business ID:</Label> {businessID}
+        </List.Item>
+        <List.Item>
+          <Label style={{ width: "90px" }}>Name:</Label> {name}
+        </List.Item>
+        <List.Item>
+          <Label style={{ width: "90px" }}>Email:</Label> {email}{" "}
+        </List.Item>
+        <List.Item>
+          <Label style={{ width: "90px" }}>Country:</Label> {country}{" "}
+        </List.Item>
+        <List.Item>
+          <Label style={{ width: "90px" }}>Province:</Label> {province}{" "}
+        </List.Item>
+        <List.Item>
+          <Label style={{ width: "90px" }}>City:</Label> {city}
+        </List.Item>
+        <List.Item>
+          <Label style={{ width: "90px" }}>Address:</Label> {address}{" "}
+        </List.Item>
+        <List.Item>
+          <Label style={{ width: "90px" }}>Postal Code:</Label> {postal_code}{" "}
+        </List.Item>
+        <List.Item>
+          <Label style={{ width: "90px" }}>Phone Number: </Label>
+          {phone_number}
+        </List.Item>
       </List>
     );
   }

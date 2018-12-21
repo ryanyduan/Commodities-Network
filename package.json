@@ -3,7 +3,7 @@
     "composer": "^0.20.4"
   },
   "name": "commodities-network",
-  "version": "0.0.3",
+  "version": "0.0.7",
   "description": "Network for trading commodities",
   "proxy": "http://localhost:3000/",
   "scripts": {

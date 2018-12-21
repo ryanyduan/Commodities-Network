@@ -36,7 +36,9 @@ export default class RyanPage extends Component {
 
   async getUserInfo() {
     let userInfo = {};
-    const cURL = `${this.config.httpURL}/Business/${this.id}`;
+    const cURL = `${this.config.httpURL}/commoditiesnetwork.Business/${
+      this.id
+    }`;
     let response = await Axios.get(cURL);
     userInfo = response.data;
     this.setState({ userInfo: userInfo });
@@ -51,13 +53,21 @@ export default class RyanPage extends Component {
       product: event.target.product_type.value,
       weight: event.target.quantity.value,
       listingState: "NOT_FOR_SALE",
-      owner: `commoditiesnetwork.Business#00`
+      owner: `commoditiesnetwork.Business#${this.id}`
     };
 
-    let cURL = `${this.config.httpURL}/Product`;
-    let reponse = await Axios.post(cURL, obj).catch(error =>
-      console.log(error)
-    );
+    let cURL = `${this.config.httpURL}/commoditiesnetwork.Product`;
+    await Axios.post(cURL, obj).catch(error => console.log(error));
+
+    let newCURL = `${this.config.httpURL}/commoditiesnetwork.NewProduct`;
+
+    let newProduct = {
+      $class: "commoditiesnetwork.NewProduct",
+      product: `commoditiesnetwork.Product#${obj.productID}`,
+      owner: `commoditiesnetwork.Business#${this.id}`
+    };
+
+    await Axios.post(newCURL, newProduct).catch(error => console.log(error));
   }
 
   render() {

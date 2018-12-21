@@ -43,6 +43,11 @@ asset Contract identified by contractID {
   --> Business buyer
 }
 
+transaction NewProduct{
+  --> Product product
+  --> Business owner
+}
+
 transaction Offer {
   o Double bidPrice
   --> Contract contract

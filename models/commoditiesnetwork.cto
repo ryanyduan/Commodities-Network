@@ -1,0 +1,65 @@
+namespace commoditiesnetwork
+
+enum ProductType {
+  o CORN
+  o WHEAT
+  o POTATO
+}
+
+enum ListingState {
+ o FOR_SALE
+ o SOLD
+ o NOT_FOR_SALE
+}
+
+asset Product identified by productID {
+  o String productID
+  o ProductType product
+  o Double weight
+  o ListingState listingState
+  --> Business owner
+}
+
+participant Business identified by businessID {
+  o String businessID
+  o String name
+  o String email
+  o String country
+  o String province
+  o String city
+  o String address
+  o String postal_code
+  o String phone_number
+  o Double account_balance
+  --> Product[] products optional
+}
+
+asset Contract identified by contractID {
+  o String contractID
+  o Double finalPrice
+  o Offer[] offers optional
+  --> Product product
+  --> Business grower
+  --> Business buyer
+}
+
+transaction Offer {
+  o Double bidPrice
+  --> Contract contract
+  --> Business buyer
+}
+
+transaction StartAuction{
+  o String contractID
+  o Double startingPrice
+  --> Business grower
+}
+
+transaction Trade {
+  --> Business newOwner
+  --> Contract contract
+}
+
+event TradeNotification{
+  --> Product product
+}

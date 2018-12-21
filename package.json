@@ -1,0 +1,47 @@
+{
+  "engines": {
+    "composer": "^0.20.4"
+  },
+  "name": "commodities-network",
+  "version": "0.0.3",
+  "description": "Network for trading commodities",
+  "proxy": "http://localhost:3000/",
+  "scripts": {
+    "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/commodities-network.bna",
+    "pretest": "npm run lint",
+    "start": "nodemon server.js",
+    "server": "nodemon server.js",
+    "lint": "eslint .",
+    "test": "nyc mocha -t 0 test/*.js && cucumber-js"
+  },
+  "keywords": [
+    "composer",
+    "composer-network"
+  ],
+  "author": "Ryan Duan",
+  "email": "ryanyduan@gmail.com",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "chai": "latest",
+    "chai-as-promised": "latest",
+    "composer-admin": "^0.20.5",
+    "composer-cli": "^0.20.4",
+    "composer-client": "^0.20.5",
+    "composer-common": "^0.20.5",
+    "composer-connector-embedded": "^0.20.4",
+    "composer-cucumber-steps": "^0.20.4",
+    "cucumber": "^2.2.0",
+    "eslint": "latest",
+    "mkdirp": "latest",
+    "mocha": "latest",
+    "nodemon": "^1.18.9",
+    "nyc": "latest"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "main": "server.js",
+  "directories": {
+    "lib": "lib"
+  }
+}

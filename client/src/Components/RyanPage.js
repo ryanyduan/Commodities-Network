@@ -7,12 +7,13 @@ import {
   Header,
   Image,
   Label,
-  List,
   Menu,
   Segment
 } from "semantic-ui-react";
+import Popup from "reactjs-popup";
 import "../styles.css";
 import UserDetails from "./UserDetails";
+import ProductList from "./ProductList";
 
 export default class RyanPage extends Component {
   constructor(props) {
@@ -20,6 +21,9 @@ export default class RyanPage extends Component {
     this.state = { userInfo: {} };
     this.id = "00";
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleContractSubmit = this.handleContractSubmit.bind(this);
+    this.productID = 0;
+    this.contractID = 0;
   }
 
   componentDidMount() {
@@ -49,7 +53,7 @@ export default class RyanPage extends Component {
 
     let obj = {
       $class: "commoditiesnetwork.Product",
-      productID: "02",
+      productID: this.productID,
       product: event.target.product_type.value,
       weight: event.target.quantity.value,
       listingState: "NOT_FOR_SALE",
@@ -58,6 +62,8 @@ export default class RyanPage extends Component {
 
     let cURL = `${this.config.httpURL}/commoditiesnetwork.Product`;
     await Axios.post(cURL, obj).catch(error => console.log(error));
+
+    this.productID++;
 
     let newCURL = `${this.config.httpURL}/commoditiesnetwork.NewProduct`;
 
@@ -68,6 +74,24 @@ export default class RyanPage extends Component {
     };
 
     await Axios.post(newCURL, newProduct).catch(error => console.log(error));
+  }
+
+  async handleContractSubmit(event) {
+    event.preventDefault();
+
+    let obj = {
+      $class: "commoditiesnetwork.Contract",
+      contractID: this.contractID,
+      startingPrice: event.target.startingPrice.value,
+      product: event.target.product.value,
+      grower: `commoditiesnetwork.Business#${this.id}`
+    };
+
+    let cURL = `${this.config.httpURL}/commoditiesnetwork.Contract`;
+
+    await Axios.post(cURL, obj).catch(error => console.log(error));
+
+    this.contractID++;
   }
 
   render() {
@@ -105,6 +129,26 @@ export default class RyanPage extends Component {
           <Form.Field />
           <Button type="submit">Add Product</Button>
         </Form>
+        <ProductList products={this.state.userInfo.products} />
+        <Popup
+          trigger={<Button>Create Contract</Button>}
+          position="right center"
+          modal
+          closeOnDocumentClick
+        >
+          <Form style={{ width: "300px" }} onSubmit={this.handleContractSubmit}>
+            <h1>Contract</h1>
+            <Form.Field>
+              <label>Product</label>
+              <input placeholder="Product" name="product" />
+            </Form.Field>
+            <Form.Field>
+              <label>Starting Price</label>
+              <input placeholder="Starting Price" name="startingPrice" />
+            </Form.Field>
+            <Button type="submit">Create Contract</Button>
+          </Form>
+        </Popup>
       </div>
     );
   }

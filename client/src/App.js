@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import Config from "./config";
-import axios from "axios";
+import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
 import RyanPage from "./Components/RyanPage";
 
 class App extends Component {
   render() {
     return (
-      <Switch>
-        <Route exact path="/Ryan" render={() => <RyanPage />} />
-      </Switch>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/Ryan" component={RyanPage} />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }

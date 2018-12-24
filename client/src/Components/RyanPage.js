@@ -10,10 +10,12 @@ import {
   Menu,
   Segment
 } from "semantic-ui-react";
-import Popup from "reactjs-popup";
 import "../styles.css";
 import UserDetails from "./UserDetails";
 import ProductList from "./ProductList";
+import CreateContract from "./CreateContract";
+import { Link } from "react-router-dom";
+import AddProduct from "./AddProduct";
 
 export default class RyanPage extends Component {
   constructor(props) {
@@ -117,38 +119,9 @@ export default class RyanPage extends Component {
 
         <UserDetails details={this.state.userInfo} />
 
-        <Form style={{ width: "300px" }} onSubmit={this.handleSubmit}>
-          <Form.Field>
-            <label>Product Type</label>
-            <input placeholder="Product Type" name="product_type" />
-          </Form.Field>
-          <Form.Field>
-            <label>Quantity</label>
-            <input name="quantity" />
-          </Form.Field>
-          <Form.Field />
-          <Button type="submit">Add Product</Button>
-        </Form>
+        <AddProduct func={this.handleSubmit} />
         <ProductList products={this.state.userInfo.products} />
-        <Popup
-          trigger={<Button>Create Contract</Button>}
-          position="right center"
-          modal
-          closeOnDocumentClick
-        >
-          <Form style={{ width: "300px" }} onSubmit={this.handleContractSubmit}>
-            <h1>Contract</h1>
-            <Form.Field>
-              <label>Product</label>
-              <input placeholder="Product" name="product" />
-            </Form.Field>
-            <Form.Field>
-              <label>Starting Price</label>
-              <input placeholder="Starting Price" name="startingPrice" />
-            </Form.Field>
-            <Button type="submit">Create Contract</Button>
-          </Form>
-        </Popup>
+        <CreateContract func={this.handleContractSubmit} />
       </div>
     );
   }

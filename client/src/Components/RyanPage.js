@@ -1,20 +1,12 @@
 import React, { Component } from "react";
 import Config from "../config";
 import Axios from "axios";
-import {
-  Button,
-  Form,
-  Header,
-  Image,
-  Label,
-  Menu,
-  Segment
-} from "semantic-ui-react";
+import { Header, Image, Label, Menu, Segment } from "semantic-ui-react";
 import "../styles.css";
 import UserDetails from "./UserDetails";
 import ProductList from "./ProductList";
 import CreateContract from "./CreateContract";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import AddProduct from "./AddProduct";
 
 export default class RyanPage extends Component {
@@ -113,7 +105,11 @@ export default class RyanPage extends Component {
         <Segment>
           <Menu pointing secondary>
             <Menu.Item name="products">Products</Menu.Item>
-            <Menu.Item name="auctions">Auctions</Menu.Item>
+            <Menu.Item name="auctions">
+              <NavLink to="/Contracts" exact>
+                Auctions
+              </NavLink>
+            </Menu.Item>
           </Menu>
         </Segment>
 

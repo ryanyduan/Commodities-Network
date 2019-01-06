@@ -71,6 +71,7 @@ export default class RyanPage extends Component {
   }
 
   async handleContractSubmit(event) {
+    console.log("hello");
     event.preventDefault();
 
     let obj = {
@@ -84,6 +85,7 @@ export default class RyanPage extends Component {
     let cURL = `${this.config.httpURL}/commoditiesnetwork.Contract`;
 
     await Axios.post(cURL, obj).catch(error => console.log(error));
+    console.log("posted contract");
 
     this.contractID++;
   }
@@ -116,7 +118,7 @@ export default class RyanPage extends Component {
         <UserDetails details={this.state.userInfo} />
 
         <AddProduct func={this.handleSubmit} />
-        <ProductList products={this.state.userInfo.products} />
+        {/* <ProductList products={this.state.userInfo.products} /> */}
         <CreateContract func={this.handleContractSubmit} />
       </div>
     );

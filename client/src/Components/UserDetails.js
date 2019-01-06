@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import { List, Label } from "semantic-ui-react";
+import PropTypes from "prop-types";
 
 export default class UserDetails extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   getList() {
     const {
       businessID,
@@ -58,3 +55,7 @@ export default class UserDetails extends Component {
     return <div>{this.getList()}</div>;
   }
 }
+
+UserDetails.propTypes = {
+  details: PropTypes.object.isRequired
+};

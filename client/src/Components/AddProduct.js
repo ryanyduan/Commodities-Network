@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import { Form, Button } from "semantic-ui-react";
+import PropTypes from "prop-types";
 
 export default class AddProduct extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Form style={{ width: "300px" }} onSubmit={this.props.func}>
@@ -23,3 +20,7 @@ export default class AddProduct extends Component {
     );
   }
 }
+
+AddProduct.propTypes = {
+  func: PropTypes.func.isRequired
+};

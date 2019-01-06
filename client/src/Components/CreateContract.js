@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import Popup from "reactjs-popup";
 import { Button, Form, Label } from "semantic-ui-react";
+import PropTypes from "prop-types";
 
 export default class CreateContract extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Popup
@@ -19,7 +16,7 @@ export default class CreateContract extends Component {
             <a className="close" onClick={close}>
               &times;
             </a>
-            <Form>
+            <Form onSubmit={this.props.func}>
               <Label>Contract</Label>
               <Form.Field>
                 <label>Product</label>
@@ -29,9 +26,7 @@ export default class CreateContract extends Component {
                 <label>Starting Price</label>
                 <input placeholder="Starting Price" name="startingPrice" />
               </Form.Field>
-              <Button type="submit" onSubmit={this.props.func} onClick={close}>
-                Create Contract
-              </Button>
+              <Button type="submit">Create Contract</Button>
             </Form>
           </div>
         )}
@@ -39,3 +34,7 @@ export default class CreateContract extends Component {
     );
   }
 }
+
+CreateContract.propTypes = {
+  func: PropTypes.func.isRequired
+};

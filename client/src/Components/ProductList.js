@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import { Table, TableBody } from "semantic-ui-react";
+import PropTypes from "prop-types";
 
 export default class ProductList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    if (this.props.products === undefined) return null;
-
     const products = this.props.products.map((product, value) => (
       <Table.Row key={value}>
         <Table.Cell>CORN</Table.Cell>
@@ -27,3 +22,7 @@ export default class ProductList extends Component {
     );
   }
 }
+
+ProductList.propTypes = {
+  products: PropTypes.array.isRequired
+};

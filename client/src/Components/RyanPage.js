@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Config from "../config";
 import Axios from "axios";
-import { Header, Image, Label, Menu, Segment } from "semantic-ui-react";
+import { Header, Image, Label, Menu, Segment, Grid } from "semantic-ui-react";
 import "../styles.css";
 import UserDetails from "./UserDetails";
 import ProductList from "./ProductList";
@@ -92,7 +92,7 @@ export default class RyanPage extends Component {
 
   render() {
     return (
-      <div className="main">
+      <div>
         <Header as="h2" className="header">
           <Image
             id="header-img"
@@ -100,7 +100,11 @@ export default class RyanPage extends Component {
             src="https://react.semantic-ui.com/images/avatar/large/patrick.png"
           />{" "}
           Ryan's Page
-          <Label className="balance" color="blue">
+          <Label
+            className="balance"
+            color="blue"
+            style={{ position: "absolute" }}
+          >
             Balance: {this.state.userInfo.account_balance}
           </Label>
         </Header>
@@ -114,12 +118,21 @@ export default class RyanPage extends Component {
             </Menu.Item>
           </Menu>
         </Segment>
+        <div className="main">
+          <UserDetails details={this.state.userInfo} />
+          <Grid columns={2} relaxed="very">
+            <Grid.Column>
+              <AddProduct func={this.handleSubmit} />
+            </Grid.Column>
+            <Grid.Column>
+              <div>
+                <CreateContract func={this.handleContractSubmit} />
+              </div>
+            </Grid.Column>
+          </Grid>
 
-        <UserDetails details={this.state.userInfo} />
-
-        <AddProduct func={this.handleSubmit} />
-        {/* <ProductList products={this.state.userInfo.products} /> */}
-        <CreateContract func={this.handleContractSubmit} />
+          {/* <ProductList products={this.state.userInfo.products} /> */}
+        </div>
       </div>
     );
   }

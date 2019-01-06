@@ -52,7 +52,11 @@ export default class UserDetails extends Component {
     );
   }
   render() {
-    return <div>{this.getList()}</div>;
+    return (
+      <div style={{ marginRight: "50px", paddingTop: "15px" }}>
+        {this.getList()}
+      </div>
+    );
   }
 }
 

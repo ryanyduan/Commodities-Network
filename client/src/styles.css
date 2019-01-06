@@ -1,6 +1,11 @@
+body{
+    background-color: white;
+}
 .main{
-    padding: 10px 10px;
-    background-color: #e6ecf0
+    margin: 50px 110px;
+    background-color: #e6ecf0;
+    height: 570px;
+    position: relative;
 }
 
 .header{
@@ -10,6 +15,34 @@
 #header-img{
     margin: 3px 5px;
 }
+.addProductContainer{
+    padding: 15px 50px;
+    background-color: #f1f1f1;
+    display: inline-block;
+    position: relative;
+    vertical-align: center;
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    margin-left: 50px;
+}
+
+.addProductLine{
+        height: 10px;
+        border: 0;
+        box-shadow: 0 10px 10px -11px #8c8b8b inset;
+}
+
+.CreateContractContainer{
+    padding: 15px 50px;
+    background-color: #D2B48C;
+    display: inline-block;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    vertical-align: center;
+    text-align: center;
+}
 
 .userDetails{
     background-color: lightgray;
@@ -18,8 +51,7 @@
     border-width: 5px;
     border-color: black;
     padding: 5px 5px !important;
-    position: fixed;
-    right: 5px;
+    float: right;
 }
 
 .balance{

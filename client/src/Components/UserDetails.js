@@ -16,7 +16,7 @@ export default class UserDetails extends Component {
       phone_number
     } = this.props.details;
     return (
-      <List className="userDetails">
+      <List className="userDetails" style={{ height: "400px" }}>
         {" "}
         <span id="title">User Details</span>
         <List.Item>
@@ -52,11 +52,7 @@ export default class UserDetails extends Component {
     );
   }
   render() {
-    return (
-      <div style={{ marginRight: "50px", paddingTop: "15px" }}>
-        {this.getList()}
-      </div>
-    );
+    return <div>{this.getList()}</div>;
   }
 }
 

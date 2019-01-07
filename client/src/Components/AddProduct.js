@@ -18,7 +18,12 @@ export default class AddProduct extends Component {
         </span>
         <hr className="addProductLine" style={{ paddingBottom: "0px" }} />
         <img
-          style={{ maxHeight: "64%", maxWidth: "100%", borderRadius: "50%" }}
+          style={{
+            maxHeight: "64%",
+            maxWidth: "100%",
+            borderRadius: "50%",
+            marginTop: "15px"
+          }}
           src="images/product.jpg"
         />
         <Popup

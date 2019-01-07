@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import Config from "../config";
 import Axios from "axios";
-import { Header, Image, Label, Menu, Segment, Grid } from "semantic-ui-react";
+import {
+  Header,
+  Image,
+  Label,
+  Menu,
+  Segment,
+  Grid,
+  Button
+} from "semantic-ui-react";
 import "../styles.css";
 import UserDetails from "./UserDetails";
 import ProductList from "./ProductList";
@@ -16,6 +24,7 @@ export default class RyanPage extends Component {
     this.id = "00";
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleContractSubmit = this.handleContractSubmit.bind(this);
+    this.getHistorian = this.getHistorian.bind(this);
     this.productID = 0;
     this.contractID = 0;
   }
@@ -71,7 +80,6 @@ export default class RyanPage extends Component {
   }
 
   async handleContractSubmit(event) {
-    console.log("hello");
     event.preventDefault();
 
     let obj = {
@@ -85,9 +93,17 @@ export default class RyanPage extends Component {
     let cURL = `${this.config.httpURL}/commoditiesnetwork.Contract`;
 
     await Axios.post(cURL, obj).catch(error => console.log(error));
-    console.log("posted contract");
 
     this.contractID++;
+  }
+
+  async getHistorian(event) {
+    console.log("historian clicked");
+    event.preventDefault();
+    let cURL = `${this.config.httpURL}/system/historian`;
+
+    let historian = await Axios.get(cURL);
+    console.log(historian.data);
   }
 
   render() {
@@ -108,7 +124,7 @@ export default class RyanPage extends Component {
             Balance: {this.state.userInfo.account_balance}
           </Label>
         </Header>
-        <Segment>
+        <Segment style={{ backgroundColor: "lightgray" }}>
           <Menu pointing secondary>
             <Menu.Item name="products">Products</Menu.Item>
             <Menu.Item name="auctions">
@@ -119,17 +135,18 @@ export default class RyanPage extends Component {
           </Menu>
         </Segment>
         <div className="main">
-          <UserDetails details={this.state.userInfo} />
-          <Grid columns={2} relaxed="very">
+          <Grid columns={3} relaxed="very">
             <Grid.Column>
               <AddProduct func={this.handleSubmit} />
             </Grid.Column>
             <Grid.Column>
-              <div>
-                <CreateContract func={this.handleContractSubmit} />
-              </div>
+              <CreateContract func={this.handleContractSubmit} />
+            </Grid.Column>
+            <Grid.Column>
+              <UserDetails details={this.state.userInfo} />
             </Grid.Column>
           </Grid>
+          <Button onClick={this.getHistorian}>Historian</Button>
 
           {/* <ProductList products={this.state.userInfo.products} /> */}
         </div>

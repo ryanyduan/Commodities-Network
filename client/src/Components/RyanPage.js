@@ -20,7 +20,7 @@ import AddProduct from "./AddProduct";
 export default class RyanPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { userInfo: {} };
+    this.state = { userInfo: {}, products: [] };
     this.id = "00";
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleContractSubmit = this.handleContractSubmit.bind(this);
@@ -29,12 +29,14 @@ export default class RyanPage extends Component {
     this.contractID = 0;
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     // data loading should be here, not constructor
     document.title = "Ryan Page";
     this.config = new Config();
     this.connection = new WebSocket(this.config.webSocketURL);
     this.getUserInfo();
+    let cURL = `${this.config.httpURL}/system/historian`;
+    this.historian = await Axios.get(cURL);
   }
 
   componentWillUnmount() {
@@ -100,10 +102,18 @@ export default class RyanPage extends Component {
   async getHistorian(event) {
     console.log("historian clicked");
     event.preventDefault();
-    let cURL = `${this.config.httpURL}/system/historian`;
 
-    let historian = await Axios.get(cURL);
-    console.log(historian.data);
+    let cURL = `${this.config.httpURL}/commoditiesnetwork.Business#${this.id}`;
+    let response = await Axios.get(cURL);
+    const responseProducts = response.data[parseInt(this.id)].products;
+
+    let products = new Set();
+    for (let items of responseProducts) {
+      products.add(items.substr(-1));
+    }
+
+    this.setState({ products });
+    console.log(this.state.products);
   }
 
   render() {
